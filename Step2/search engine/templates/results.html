@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <head>
+    <title>Chinese Game Job Search Engine</title>
+  </head>
+  <body>
+  <div class="jumbotron">
+    <h1>Found {{hits}} results for query {{keywords}}: </h1>
+    <p>The algorithm is: {{algorithm}}</p>
+  </div>
+  <table class="table">
+        <thead>
+		<tr>
+			<th>岗位名称</th>
+            <th>排序分数</th>
+			<th>工作地点</th>
+			<th>薪水</th>
+            <th>工作频率</th>
+            <th>工作周期</th>
+            <th>公司名称</th>
+            <th>公司规模</th>
+            <th>招聘详情</th>
+		</tr>
+        <tbody>
+  {% for doc in docs%}
+		<tr>
+			<td>{{doc["_source"]['Name']}}</td>
+            <td>{{doc["_score"]}}</td>
+			<td>{{doc["_source"]['Address']}}</td>
+			<td>{{doc["_source"]['Salary']}}</td>
+            <td>{{doc["_source"]['Work_Frequency']}}</td>
+            <td>{{doc["_source"]['Work_Period']}}</td>
+            <td>{{doc["_source"]['Company_Name']}}</td>
+            <td>{{doc["_source"]['Company_Employee_Number']}}</td>
+            <td><a href="url">{{doc["_source"]['Detail_Url']}}</a></td>
+		</tr>
+	</thead>
+      {% endfor %}
+  </table>
+  </body>
+</html>
